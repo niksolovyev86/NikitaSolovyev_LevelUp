@@ -4,7 +4,9 @@
 
     <test name="Ticket numbers compare positive tests">
         <classes>
-            <class name="ru.levelp.at.TicketNumberComparePositiveTest"></class>
+            <class name="ru.levelp.at.TicketNumberComparePositiveTest">
+
+            </class>
         </classes>
     </test>
 </suite>

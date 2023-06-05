@@ -4,8 +4,12 @@
 
     <test name="Ticket numbers compare all tests">
         <classes>
-            <class name="ru.levelp.at.TicketNumberComparePositiveTest"></class>
-            <class name="ru.levelp.at.TicketNumberCompareNegativeTest"></class>
+            <class name="ru.levelp.at.TicketNumberComparePositiveTest">
+
+            </class>
+            <class name="ru.levelp.at.TicketNumberCompareNegativeTest">
+
+            </class>
         </classes>
     </test>
 </suite>
