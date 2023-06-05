@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Ticket numbers compare negative tests">
+
+    <test name="Ticket numbers compare negative tests">
+        <classes>
+            <class name="ru.levelp.at.TicketNumberCompareNegativeTest"></class>
+        </classes>
+    </test>
+</suite>
