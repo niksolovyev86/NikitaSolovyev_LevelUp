@@ -10,7 +10,26 @@ public class TicketNumberCompareNegativeTest extends BaseTest {
     public void ticketNumberCompareNegativeTest(String ticketNumber, boolean expectedResult) {
         boolean result = ticketNumberCompare(ticketNumber);
 
-        assertThat(result).as("Something wrong is going on")
+        assertThat(result).as("Ticket isn't happy")
                           .isEqualTo(expectedResult);
     }
+
+    @Test(dataProvider = "DataProviderTicketNegativeTestEmpty", dataProviderClass = DataProviderForTest.class,
+    expectedExceptions = {IndexOutOfBoundsException.class})
+    public void ticketNumberCompareNegativeTestEmptyInputArray(String ticketNumber, boolean expectedResult) {
+        boolean result = ticketNumberCompare(ticketNumber);
+
+        assertThat(result).as("Ticket isn't empty")
+                          .isEqualTo(expectedResult);
+    }
+
+    @Test(dataProvider = "DataProviderTicketNegativeTestWrongInputData", dataProviderClass = DataProviderForTest.class,
+          expectedExceptions = {NumberFormatException.class})
+    public void ticketNumberCompareNegativeTestWrongInputData(String ticketNumber, boolean expectedResult) {
+        boolean result = ticketNumberCompare(ticketNumber);
+
+        assertThat(result).as("Ticket input data is wrong")
+                          .isEqualTo(expectedResult);
+    }
+
 }
