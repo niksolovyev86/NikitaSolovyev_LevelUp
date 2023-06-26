@@ -8,6 +8,7 @@ public class DataProviderForTest {
     public static final String DATA_PROVIDER_TICKET_NUMBER_NEGATIVE_TEST = "DataProviderTicketNegativeTest";
     public static final String DATA_PROVIDER_TICKET_NUMBER_NEGATIVE_TEST_WRONG_INPUT_DATA = "DataProviderTicketNegativeTestWrongInputData";
     public static final String DATA_PROVIDER_TICKET_NUMBER_NEGATIVE_TEST_EMPTY = "DataProviderTicketNegativeTestEmpty";
+    public static final String DATA_PROVIDER_TICKET_NUMBER_NEGATIVE_TEST_NULL = "DataProviderTicketNegativeTestNull";
 
     @DataProvider(name = DATA_PROVIDER_TICKET_NUMBER_POSITIVE_TEST)
     public static Object[][] supplyTicketNumbersTrue() {
@@ -48,6 +49,13 @@ public class DataProviderForTest {
     public static Object[][] supplyTicketNumbersFalseEmpty() {
         return new Object[][]{
             new Object[]{"", false}
+        };
+    }
+
+    @DataProvider(name = DATA_PROVIDER_TICKET_NUMBER_NEGATIVE_TEST_NULL)
+    public static Object[][] supplyTicketNumbersFalseNull() {
+        return new Object[][]{
+            new Object[]{null, false}
         };
     }
 
