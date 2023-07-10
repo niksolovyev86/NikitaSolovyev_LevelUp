@@ -1,11 +1,15 @@
 package ru.levelp.at.hw3;
 
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
-public class TestTask1 extends BaseTest {
+public class TestTask2 extends BaseTest{
+
+    String letterTitle = "Содержит слово Тест";
+    String expectedLetterTitle = "Тест";
+    String letterText = "Тестируем сортировку по папкам";
+    String expectedLetterText = "Тестируем";
 
     @Test
     public void openMailRuSide() {
@@ -79,39 +83,11 @@ public class TestTask1 extends BaseTest {
         frameSendMail.
             findElement(By.
                 xpath("//div[contains(@class, 'subject__container')]//input[contains(@class, 'container')]"))
-            .sendKeys("Test");
+            .sendKeys(letterTitle);
 
         frameSendMail.
             findElement(By.xpath("//div[contains(@class, 'editable-container')]//div"))
-            .sendKeys("Test");
-
-        //Нажати на кнопку Сохранить письмо
-        frameSendMail.findElement(By.xpath("//button[@data-test-id='save']")).click();
-
-        //Закрытие окна с письмом
-        var closeFrameSendMailButton = frameSendMail.
-            findElement(By.xpath("//div[@class='row--3ldj- margin--1eqJf']//button[3]"));
-        closeFrameSendMailButton.click();
-
-
-        //Переход на вкладку Drafts
-        var draftTabButton = wait.
-            until(ExpectedConditions.elementToBeClickable(By.
-                xpath("//a[contains(@href, 'drafts')]")));
-        draftTabButton.click();
-
-        //Проверка перехода на вкладку drafts
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.urlContains("drafts"));
-
-        //Проверка письма в Send
-        testContent();
-
-        //Открытие письма во вкладке Drafts
-        var draftLetterOpenButton = wait.
-            until(ExpectedConditions.elementToBeClickable(By.
-                xpath("//div[contains(@class, 'correspondent')]//..")));
-        draftLetterOpenButton.click();
+            .sendKeys(letterText);
 
         //Нажатие кнопки Отправить
         var sendLetterButton = wait.
@@ -136,13 +112,17 @@ public class TestTask1 extends BaseTest {
         //Проверка письма в Send
         testContent();
 
-        //Переход во вкладку Drafts
-        driver.get(getURL_MAIL_MAILBOX_DRAFT());
+        //Переход во вкладку Send
+        var testMailTabButton = wait.
+            until(ExpectedConditions.elementToBeClickable(By.
+                xpath("//a[contains(@title, 'Тест')]")));
+        testMailTabButton.click();
 
-        //Переход во вкладку Drafts для проверки его отсудствия после отправки
-        softAssertions.assertThat(By.
-                          xpath("//span[contains(@class, 'subject')]//span")).
-                      as("There is object in draft tab!").isNotNull();
+        //Проверка перехода на вкладку Тест
+        wait.until(ExpectedConditions.urlContains("https://e.mail.ru/1/"));
+
+        //Проверка письма в Тест
+        testContent();
 
         //Logout
         var userMenuButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@aria-label='niksolovyev86@mail.ru']")));
@@ -151,6 +131,7 @@ public class TestTask1 extends BaseTest {
         var userLogoutButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[div[contains(text(), 'Выйти')]]")));
         userLogoutButton.click();
 
+
         softAssertions.assertAll();
     }
 
@@ -158,10 +139,9 @@ public class TestTask1 extends BaseTest {
 
         var factMailAddress = wait.until(
             ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'correspondent')]//span")));
-        softAssertions.assertThat(
-                          factMailAddress.getText()).
+        softAssertions.assertThat(factMailAddress.getAccessibleName()).
                       as("Wrong mail address in letter!").
-                      isEqualTo(getMAIL_ADDRESS());
+                      contains(getMAIL_ADDRESS());
 
         var factMailTitle = wait.until(
                                     ExpectedConditions.visibilityOfElementLocated(By.
@@ -169,13 +149,14 @@ public class TestTask1 extends BaseTest {
                                 .getText();
         softAssertions.assertThat(factMailTitle).
                       as("Wrong title in letter!").
-                      contains("Test");
+                      contains(expectedLetterTitle);
 
         var factMailText = wait.until(
-                                   ExpectedConditions.visibilityOfElementLocated(By.
-                                       xpath("//span[contains(@class, 'llc__snippet')]//span")));
+            ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//span[contains(@class, 'llc__snippet')]//span")));
         softAssertions.assertThat(factMailText.getText()).
                       as("Wrong text in letter!").
-                      contains("Test");
+                      contains(expectedLetterText);
     }
+
 }
