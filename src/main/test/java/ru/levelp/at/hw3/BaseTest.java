@@ -4,9 +4,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
@@ -19,17 +17,11 @@ public class BaseTest {
     private final String URL_MAIL_MAILBOX = "https://e.mail.ru/inbox/";
     private final String URL_MAIL_MAILBOX_DRAFT = "https://e.mail.ru/drafts/";
 
-    private final String URL_MAIL_MAILBOX_SEND = "https://e.mail.ru/sent/";
-
-    private final String LOGIN = "";
-    private final String PASSWORD = "";
+    private final String LOGIN = "niksolovyev86";
+    private final String PASSWORD = "Cfntkbn_5556";
     private final String MAIL_ADDRESS = LOGIN + "@mail.ru";
     public String getLOGIN() {
         return LOGIN;
-    }
-
-    public String getURL_MAIL_MAILBOX_SEND() {
-        return URL_MAIL_MAILBOX_SEND;
     }
 
     public String getPASSWORD() {

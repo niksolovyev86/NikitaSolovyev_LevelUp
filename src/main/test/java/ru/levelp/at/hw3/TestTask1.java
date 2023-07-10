@@ -2,18 +2,14 @@ package ru.levelp.at.hw3;
 
 import org.openqa.selenium.By;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-import ru.levelp.at.hw3.utils.SleepUtils;
-import java.io.IOException;
 
 public class TestTask1 extends BaseTest {
 
     @Test
     public void openMailRuSide() {
-        String factURL = driver.getCurrentUrl();
+
         // открыли Mail.ru
         driver.get(getURL_MAIL());
 
@@ -107,7 +103,7 @@ public class TestTask1 extends BaseTest {
         //Проверка перехода на вкладку drafts
         driver.navigate().refresh();
         String expectedDraftsURL = "https://e.mail.ru/drafts/";
-        var draftsURLCheck = wait.until(ExpectedConditions.urlContains("drafts"));
+        wait.until(ExpectedConditions.urlContains("drafts"));
 
         //Проверка письма в Send
         testContent();
