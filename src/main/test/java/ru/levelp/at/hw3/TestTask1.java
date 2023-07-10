@@ -102,7 +102,6 @@ public class TestTask1 extends BaseTest {
 
         //Проверка перехода на вкладку drafts
         driver.navigate().refresh();
-        String expectedDraftsURL = "https://e.mail.ru/drafts/";
         wait.until(ExpectedConditions.urlContains("drafts"));
 
         //Проверка письма в Send
@@ -133,8 +132,7 @@ public class TestTask1 extends BaseTest {
         sendMailTabButton.click();
 
         //Проверка перехода на вкладку send
-        String expectedSendURL = "https://e.mail.ru/sent/";
-        var sendURLCheck = wait.until(ExpectedConditions.urlContains("sent"));
+        wait.until(ExpectedConditions.urlContains("sent"));
 
         //Проверка письма в Send
         testContent();
@@ -152,11 +150,8 @@ public class TestTask1 extends BaseTest {
 
     public void testContent() {
 
-        System.out.println(driver.getCurrentUrl());
-
         var factMailAddress = wait.until(
             ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'correspondent')]//span")));
-        System.out.println(factMailAddress.getText());
         softAssertions.assertThat(
                           factMailAddress.getText()).
                       as("Wrong mail address in letter!").
@@ -166,7 +161,6 @@ public class TestTask1 extends BaseTest {
                                     ExpectedConditions.visibilityOfElementLocated(By.
                                         xpath("//div[contains(@class, 'title')]//span")))
                                 .getText();
-        System.out.println(factMailTitle);
         softAssertions.assertThat(factMailTitle).
                       as("Wrong title in letter!").
                       contains("Test");
@@ -174,7 +168,6 @@ public class TestTask1 extends BaseTest {
         var factMailText = wait.until(
                                    ExpectedConditions.visibilityOfElementLocated(By.
                                        xpath("//span[contains(@class, 'llc__snippet')]//span")));
-        System.out.println(factMailText.getText());
         softAssertions.assertThat(factMailText.getText()).
                       as("Wrong text in letter!").
                       contains("Test");
