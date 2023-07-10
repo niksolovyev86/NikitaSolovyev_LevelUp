@@ -19,6 +19,7 @@
         <testng.version>7.8.0</testng.version>
         <assertj-core.version>3.24.2</assertj-core.version>
         <selenium-java.version>4.10.0</selenium-java.version>
+        <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
 
         <maven-checkstyle-plugin.version>3.2.0</maven-checkstyle-plugin.version>
 
@@ -89,8 +90,32 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suite.xml}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
           </plugins>
 
     </build>
 
+    <profiles>
+
+        <profile>
+            <id>AllTests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>${project.build.directory}/test-classes/ru/levelp/at/hw3/AllTests.xml</suite.xml>
+            </properties>
+        </profile>
+
+    </profiles>
 </project>
