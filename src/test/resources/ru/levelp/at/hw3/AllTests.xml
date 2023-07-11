@@ -6,6 +6,10 @@
         <classes>
             <class name="ru.levelp.at.hw3.TestTask1">
             </class>
+            <class name="ru.levelp.at.hw3.TestTask2">
+            </class>
+            <class name="ru.levelp.at.hw3.TestTask3">
+            </class>
 
         </classes>
     </test>

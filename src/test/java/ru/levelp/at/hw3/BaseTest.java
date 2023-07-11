@@ -1,47 +1,47 @@
 package ru.levelp.at.hw3;
 
+import java.time.Duration;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import java.time.Duration;
 
 public class BaseTest {
 
     WebDriver driver;
     public WebDriverWait wait;
     SoftAssertions softAssertions;
-    private final String URL_MAIL = "https://mail.ru/";
-    private final String URL_MAIL_MAILBOX = "https://e.mail.ru/inbox/";
-    private final String URL_MAIL_MAILBOX_DRAFT = "https://e.mail.ru/drafts/";
+    private final String urlMail = "https://mail.ru/";
+    private final String urlMailMailbox = "https://e.mail.ru/inbox/";
+    private final String urlMailMailboxDraft = "https://e.mail.ru/drafts/";
+    private final String login = "niksolovyev86";
+    private final String password = "Cfntkbn_5556";
+    private final String mailAddress = login + "@mail.ru";
 
-    private final String LOGIN = "niksolovyev86";
-    private final String PASSWORD = "Cfntkbn_5556";
-    private final String MAIL_ADDRESS = LOGIN + "@mail.ru";
-    public String getLOGIN() {
-        return LOGIN;
+    public String getLogin() {
+        return login;
     }
 
-    public String getPASSWORD() {
-        return PASSWORD;
+    public String getPassword() {
+        return password;
     }
 
-    public String getMAIL_ADDRESS() {
-        return MAIL_ADDRESS;
+    public String getMailAddress() {
+        return mailAddress;
     }
 
     public String getURL_MAIL() {
-        return URL_MAIL;
+        return urlMail;
     }
 
-    public String getURL_MAIL_MAILBOX_DRAFT() {
-        return URL_MAIL_MAILBOX_DRAFT;
+    public String getUrlMailMailboxDraft() {
+        return urlMailMailboxDraft;
     }
 
-    public String getURL_MAIL_MAILBOX() {
-        return URL_MAIL_MAILBOX;
+    public String getUrlMailMailbox() {
+        return urlMailMailbox;
     }
 
     @BeforeMethod
